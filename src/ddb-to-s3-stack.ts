@@ -11,7 +11,7 @@ export class DdbToS3Stack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps = {}) {
     super(scope, id, props);
 
-    const table = new ddb.Table(this, 'table', {
+    const ddbTable = new ddb.Table(this, 'ddbTable', {
       partitionKey: { name: 'systemId', type: ddb.AttributeType.NUMBER },
       sortKey: { name: 'timestamp', type: ddb.AttributeType.NUMBER },
       stream: ddb.StreamViewType.OLD_IMAGE,
@@ -30,14 +30,14 @@ export class DdbToS3Stack extends Stack {
         },
       },
     );
-    table.grantStreamRead(ddbArchiveLambda);
+    ddbTable.grantStreamRead(ddbArchiveLambda);
     ddbArchiveBucket.grantWrite(ddbArchiveLambda);
 
     ddbArchiveLambda.addEventSourceMapping('archivelog', {
       // max json document is 4 mb per file
       batchSize: 10000,
       maxBatchingWindow: core.Duration.minutes(5),
-      eventSourceArn: table.tableStreamArn,
+      eventSourceArn: ddbTable.tableStreamArn,
       startingPosition: lambda.StartingPosition.TRIM_HORIZON,
       bisectBatchOnError: true,
     });

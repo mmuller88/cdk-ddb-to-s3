@@ -52,3 +52,5 @@ junit.xml
 /cdk.out/
 .cdk.staging/
 .parcel-cache/
+diagram.dot
+diagram.png

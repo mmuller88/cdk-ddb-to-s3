@@ -148,6 +148,9 @@
       "steps": [
         {
           "exec": "cdk synth"
+        },
+        {
+          "exec": "yarn cdk-dia && mv diagram.png diagrams/all.png"
         }
       ]
     },

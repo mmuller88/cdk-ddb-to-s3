@@ -15,6 +15,12 @@ const project = new pj.awscdk.AwsCdkTypeScriptApp({
     },
   },
   deps: ['aws-lambda', 'aws-sdk'],
-  devDeps: ['@types/aws-lambda'],
+  devDeps: ['@types/aws-lambda', 'cdk-dia'],
 });
+
+// Always update the diagram if manually synth
+project.cdkTasks.synth.exec('yarn cdk-dia && mv diagram.png diagrams/all.png');
+
+project.gitignore.addPatterns('diagram.dot', 'diagram.png');
+
 project.synth();

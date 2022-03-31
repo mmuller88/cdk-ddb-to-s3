@@ -9,6 +9,6 @@ const devEnv = {
 
 const app = new App();
 
-new DdbToS3Stack(app, 'ddb-to-s3-stack-dev', { env: devEnv });
+new DdbToS3Stack(app, 'ddb-to-s3-stack', { env: devEnv });
 
 app.synth();
