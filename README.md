@@ -1,4 +1,4 @@
-# cdk-ddb-to-sr
+# cdk-ddb-to-s3
 
 Repo for blog post https://martinmueller.dev/dynamodb-to-s3-eng/
 
