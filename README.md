@@ -1,6 +1,6 @@
 # cdk-ddb-to-sr
 
-...
+Repo for blog post https://martinmueller.dev/dynamodb-to-s3-eng/
 
 ## architecture
 
